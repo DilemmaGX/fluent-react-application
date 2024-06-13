@@ -128,16 +128,12 @@ This is the main body. Write your elements here like what your regularly do with
 > [!NOTE]
 > 🟩Finished 🟨In progress 🟥Not started
 
-🟩~~React support~~
-
-🟩~~Fluent UI support~~
-
-🟩~~Electron support~~
-
+```
+🟩React support
+🟩Fluent UI support
+🟩Electron support
 🟨Window control
-
-	🟩Close window
-
-	🟨Maximize window
-    
-	🟨Minimize window
+    🟩Close window
+    🟨Maximize window
+    🟨Minimize window
+```
