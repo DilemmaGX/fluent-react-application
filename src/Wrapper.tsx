@@ -57,7 +57,7 @@ function Wrapper() {
                                     <MenuPopover>
                                         <MenuList>
                                             <MenuItem icon={<MarkGithubIcon />} onClick={() => { window.open('https://github.com/DilemmaGX/fluent-react-application') }}>{translate('app.title.template.source', lang)}</MenuItem>
-                                            <MenuItem icon={<LawIcon />} onClick={() => { window.open('https://github.com/DilemmaGX/fluent-react-application/blob/main/LICENSE') }}>{translate('app.title.template.license', lang)}</MenuItem>
+                                            <MenuItem icon={<LawIcon />} onClick={() => { window.open('https://github.com/DilemmaGX/fluent-react-application/blob/master/LICENSE') }}>{translate('app.title.template.license', lang)}</MenuItem>
                                         </MenuList>
                                     </MenuPopover>
                                 </Menu>
