@@ -122,3 +122,22 @@ This is where the main window-bar is modified. It's recommended to leave the sty
 ### [App.tsx](./src/App.tsx)
 
 This is the main body. Write your elements here like what your regularly do with other React apps.
+
+## Features Planned
+
+> [!NOTE]
+> 🟩Finished 🟨In progress 🟥Not started
+
+🟩~~React support~~
+
+🟩~~Fluent UI support~~
+
+🟩~~Electron support~~
+
+🟨Window control
+
+	🟩Close window
+
+	🟨Maximize window
+    
+	🟨Minimize window
