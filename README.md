@@ -1,6 +1,8 @@
 <div align="center">
 <h1>Fluent-React-Application Template</h1>
-<img alt="GitHub License" src="https://img.shields.io/github/license/DilemmaGX/fluent-react-application?color=3572EF" /><br />
+<img alt="GitHub License" src="https://img.shields.io/github/license/DilemmaGX/fluent-react-application?color=3572EF" />
+<img alt="GitHub Release" src="https://img.shields.io/github/v/release/DilemmaGX/fluent-react-application?color=3572EF">
+<br />
 <img alt="Template Preview" src="https://github.com/DilemmaGX/fluent-react-application/assets/111679857/9273d67f-2e02-43b0-aa4e-a38f1837bc69" width="800px" />
 </div>
 
