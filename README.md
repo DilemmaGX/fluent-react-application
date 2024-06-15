@@ -110,6 +110,17 @@ In your elements:
 >
 > It's also important to make sure your translations have similar length. Different length of text can have different displays on some componet (for example, `<Button>`).
 
+### [main.js](./main.js)
+
+This is where electron is called to create a window. Be sure to modify the script there and replace your app name with some of the key words. The original script should create a frame-less window without any window controls. Window controls are introduced in [Wrapper.tsx](./src/Wrapper.tsx).
+
+### [build.js](./build.js)
+
+> [!CAUTION]
+> Modifying this file to replace the default Webpack setup with [esbuild](https://esbuild.github.io/) may introduce unforeseen side effects. As such, it is advised against altering `build.js` without careful consideration. Should you wish to revert to Webpack, simply revert the build script in `package.json` by changing `"build": "node build.js"` back to `"build": "react-scripts build"`.
+
+This script constitutes the integration of [esbuild](https://esbuild.github.io/) into our project. Esbuild was adopted following its impressive performance demonstrated in the project's second iteration, outpacing Webpack significantly. Its lightning-fast bundling accelerates development workflows, notably reducing the time and resources consumed by commands like `npm run electron` and `npm run electron:exe`, thereby enhancing overall efficiency and productivity.
+
 ### [Wrapper.tsx](./src/Wrapper.tsx)
 
 This is where the main window-bar is modified. It's recommended to leave the styles unchanged. If you wish to modify the functions in the title bar, consider to use [Button](https://master--628d031b55e942004ac95df1.chromatic.com/?path=/docs/components-button-button--default) or [MenuButton](https://master--628d031b55e942004ac95df1.chromatic.com/?path=/docs/components-button-menubutton--default).
@@ -131,11 +142,13 @@ This is the main body. Write your elements here like what your regularly do with
 > 🟩Finished 🟨In progress 🟥Not started
 
 ```
-🟩React support
-🟩Fluent UI support
-🟩Electron support
-🟨Window control
-    🟩Close window
-    🟨Maximize window
-    🟨Minimize window
+ [FRAT-v1.0.0]🟩React support
+ [FRAT-v1.0.0]🟩Fluent UI support
+ [FRAT-v1.0.0]🟩Electron support
+ [FRAT-v1.0.1]🟩Esbuild support
+*[FRAT-v1.0.0]🟨Window control
+    [FRAT-v1.0.0]🟩Close window
+    [UNSUPPORTED]🟨Maximize window
+    [UNSUPPORTED]🟨Minimize window
+ [UNSUPPORTED]🟥Mac and Linux support
 ```
