@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import Wrapper from './Wrapper';
+import { I18nProvider } from './i18n/I18nProvider';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -8,6 +9,8 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-    <Wrapper />
+    <I18nProvider>
+      <Wrapper />
+    </I18nProvider>
   </React.StrictMode>
 );

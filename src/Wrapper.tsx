@@ -1,23 +1,55 @@
 import { FluentProvider, webLightTheme, Menu, MenuTrigger, MenuButton, MenuPopover, MenuList, MenuItem, Button, Theme, webDarkTheme } from '@fluentui/react-components';
-import { PackageIcon, RepoTemplateIcon, MarkGithubIcon, SunIcon, MoonIcon, LawIcon, XIcon } from '@primer/octicons-react';
+import { PackageIcon, RepoTemplateIcon, MarkGithubIcon, SunIcon, MoonIcon, LawIcon, XIcon, DashIcon, ScreenFullIcon, ScreenNormalIcon } from '@primer/octicons-react';
 import React, { useState } from 'react';
 import { Language, translate } from './api/translate';
 import App from './App';
 import { LocalLanguageFilled } from '@fluentui/react-icons';
 import { appConfig } from './api/appconfig';
+import { useI18n } from './i18n/I18nProvider';
+
+type ElectronRegion = 'drag' | 'no-drag';
+type ElectronStyle = React.CSSProperties & { WebkitAppRegion?: ElectronRegion };
 
 function Wrapper() {
     const [theme, setTheme] = useState<Theme>(appConfig.getTheme(webLightTheme));
-    const [lang, setLang] = useState<Language>(appConfig.getLang('enus'));
+    const { lang, setLang, t } = useI18n();
+    const [isMaximized, setIsMaximized] = React.useState<boolean>(false);
 
     const toggleTheme = () => {
         appConfig.setTheme(theme === webLightTheme ? webDarkTheme : webLightTheme);
         setTheme(theme === webLightTheme ? webDarkTheme : webLightTheme);
     }
+
     const toggleLang = () => {
-        appConfig.setLang(lang === 'zhcn' ? "enus" : "zhcn");
         setLang(lang === 'zhcn' ? "enus" : "zhcn");
     }
+    React.useEffect(() => {
+        if (window.electronAPI) {
+            window.electronAPI.isMaximized().then(setIsMaximized);
+            window.electronAPI.onMaximizeState(setIsMaximized);
+        }
+    }, []);
+
+    const titleBarStyle: ElectronStyle = {
+        position: "fixed",
+        top: 0,
+        left: 0,
+        width: "100%",
+        backgroundColor: "#88888833",
+        backdropFilter: "blur(10px)",
+        userSelect: "none",
+        WebkitAppRegion: "drag",
+    };
+
+    const leftBarStyle: ElectronStyle = {
+        float: "left",
+        WebkitAppRegion: "no-drag",
+    };
+
+    const rightBarStyle: ElectronStyle = {
+        float: "right",
+        WebkitAppRegion: "no-drag",
+    };
 
     return (
         <FluentProvider theme={theme} applyStylesToPortals={false} style={{
@@ -28,25 +60,11 @@ function Wrapper() {
             top: 0,
             transition: '200ms ease',
         }}>
-            <div style={{
-                position: "fixed",
-                top: 0,
-                left: 0,
-                width: "100%",
-                backgroundColor: "#88888833",
-                backdropFilter: "blur(10px)",
-                userSelect: "none",
-                // @ts-ignore
-                WebkitAppRegion: "drag"
-            }}>
-                <div style={{
-                    float: "left",
-                    // @ts-ignore
-                    WebkitAppRegion: "no-drag"
-                }}>
+            <div style={titleBarStyle}>
+                <div style={leftBarStyle}>
                     <Menu>
                         <MenuTrigger disableButtonEnhancement>
-                            <MenuButton appearance="subtle" shape='square' icon={<PackageIcon />} menuIcon={null}>{translate('app.title.appname', lang)}</MenuButton>
+                            <MenuButton appearance="subtle" shape='square' icon={<PackageIcon />} menuIcon={null}>{t('app.title.appname')}</MenuButton>
                         </MenuTrigger>
                         <MenuPopover>
                             <MenuList>
@@ -67,19 +85,26 @@ function Wrapper() {
                     <Button appearance='subtle' shape='square' icon={theme === webLightTheme ? <SunIcon /> : <MoonIcon />} onClick={toggleTheme} />
                     <Button appearance='subtle' shape='square' icon={<LocalLanguageFilled />} onClick={toggleLang} />
                 </div>
-                <div style={{
-                    float: "right",
-                    // @ts-ignore
-                    WebkitAppRegion: "no-drag"
-                }}>
-                    <Button appearance='subtle' shape='square' icon={<XIcon />} onClick={window.close} />
+                <div style={rightBarStyle}>
+                    <Button appearance='subtle' shape='square'
+                            title={t(isMaximized ? 'app.window.restore' : 'app.window.maximize')}
+                            icon={isMaximized ? <ScreenNormalIcon /> : <ScreenFullIcon />}
+                            onClick={() => isMaximized ? window.electronAPI.unmaximize() : window.electronAPI.maximize()} />
+                    <Button appearance='subtle' shape='square'
+                            title={t('app.window.minimize')}
+                            icon={<DashIcon />}
+                            onClick={() => window.electronAPI.minimize()} />
+                    <Button appearance='subtle' shape='square'
+                            title={t('app.window.close')}
+                            icon={<XIcon />}
+                            onClick={() => window.electronAPI.close()} />
                 </div>
             </div>
             <div style={{
                 marginTop: '31.5px',
                 padding: '10px'
             }}>
-                <App lang={lang} />
+                <App />
             </div>
         </FluentProvider>
     );

@@ -28,6 +28,22 @@ const translation: Record<string, Record<Language, string>> = {
     "app.body.demo": {
         "zhcn": "功能演示",
         "enus": "Demonstration"
+    },
+    "app.window.minimize": {
+        "zhcn": "最小化",
+        "enus": "Minimize"
+    },
+    "app.window.maximize": {
+        "zhcn": "最大化",
+        "enus": "Maximize"
+    },
+    "app.window.restore": {
+        "zhcn": "还原",
+        "enus": "Restore"
+    },
+    "app.window.close": {
+        "zhcn": "关闭",
+        "enus": "Close"
     }
 };
 

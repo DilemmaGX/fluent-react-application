@@ -146,9 +146,9 @@ This is the main body. Write your elements here like what your regularly do with
  [FRAT-v1.0.0]🟩Fluent UI support
  [FRAT-v1.0.0]🟩Electron support
  [FRAT-v1.0.1]🟩Esbuild support
-*[FRAT-v1.0.0]🟨Window control
+*[FRAT-v1.0.0]🟩Window control
     [FRAT-v1.0.0]🟩Close window
-    [UNSUPPORTED]🟨Maximize window
-    [UNSUPPORTED]🟨Minimize window
- [UNSUPPORTED]🟥Mac and Linux support
+    [FRAT-v1.0.0]🟩Maximize window
+    [FRAT-v1.0.0]🟩Minimize window
+ [UNSUPPORTED]🟨Mac and Linux support
 ```

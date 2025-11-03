@@ -16,9 +16,9 @@
     "build": "node build.js",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "electron:dev": "electron .",
+    "electron:dev": "node build.js && electron .",
     "electron": "npm run build && electron .",
-    "electron:exe": "npm run build && electron-packager ./ \"Example\" --out ./Application --app-version 1.0.0 --overwrite --asar --prune --ignore=node_modules"
+    "electron:exe": "npm run build && electron-packager ./ \"Example\" --out ./Application --app-version 1.0.0 --overwrite --asar --prune --ignore=node_modules && powershell -NoProfile -NonInteractive -Command \"Compress-Archive -Path 'Application\\Example-win32-x64' -DestinationPath 'Application\\Example-win32-x64.zip' -Force\""
   },
   "dependencies": {
     "@fluentui/react-components": "^9.54.1",
